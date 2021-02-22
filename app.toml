@@ -1,0 +1,17 @@
+[mysql]
+    LogMode = false
+    User = "root"
+    Config = "charset=utf8mb4&parseTime=True&loc=Local"
+    Password = ""
+    Host = "127.0.0.1"
+    Port = 3306
+    Name = "sns"
+    Prefix = ""
+
+    # 最大空闲连接
+    MaxIdleConns = 10
+    # 最大数据库连接
+    MaxOpenConns = 100
+    # 数据库连接最大生存时间
+    MaxLifetime = 30
+
