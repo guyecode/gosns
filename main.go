@@ -13,7 +13,7 @@ var db *gorm.DB
 func main() {
 	engine := initializers.InitEngine()
 
-	
+
 	// 加载配置文件
 	initializers.InitConfig()
 	global.DB = initializers.InitDatabase()

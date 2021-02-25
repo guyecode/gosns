@@ -6,6 +6,7 @@ import (
 	"gorm.io/gorm"
 	"gorm.io/gorm/schema"
 	"gosns/global"
+	"gosns/app/models"
 )
 
 func InitDatabase() *gorm.DB {
@@ -39,6 +40,14 @@ func InitDatabase() *gorm.DB {
 	sqldb.SetMaxOpenConns(mc.MaxOpenConns)
 	sqldb.SetConnMaxLifetime(mc.MaxLifetime)
 
+	if global.CONFIG.DEBUG {
+		AutoMigrate(db)
+	}
 	return db
 
+}
+
+
+func AutoMigrate(db *gorm.DB) {
+	db.AutoMigrate(&(models.User{}))
 }
