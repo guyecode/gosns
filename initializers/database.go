@@ -2,6 +2,7 @@ package initializers
 
 import (
 	"fmt"
+	"github.com/gin-gonic/gin"
 	"gorm.io/driver/mysql"
 	"gorm.io/gorm"
 	"gorm.io/gorm/schema"
@@ -40,7 +41,7 @@ func InitDatabase() *gorm.DB {
 	sqldb.SetMaxOpenConns(mc.MaxOpenConns)
 	sqldb.SetConnMaxLifetime(mc.MaxLifetime)
 
-	if global.CONFIG.DEBUG {
+	if global.CONFIG.RUN_MODE == gin.DebugMode {
 		AutoMigrate(db)
 	}
 	return db

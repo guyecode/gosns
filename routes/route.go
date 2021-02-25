@@ -1,9 +1,13 @@
 package routes
 
-import "github.com/gin-gonic/gin"
+import (
+	"github.com/gin-gonic/gin"
+	"gosns/global"
+)
 
 func InitRoute() *gin.Engine{
-	engine := gin.New()
+	gin.SetMode(global.CONFIG.RUN_MODE)
+	engine := gin.Default()
 	loadRoute(engine)
 	return engine
 

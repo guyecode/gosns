@@ -1,5 +1,7 @@
 
-DEBUG = true
+# GIN_MODE: debug test release
+RUN_MODE = "debug"
+
 [mysql]
     LogMode = false
     User = "root"

@@ -2,6 +2,6 @@ package configs
 
 
 type Config struct {
-	DEBUG bool
+	RUN_MODE string `mapstructure:"RUN_MODE"`
 	Mysql Mysql `mapstructure:"mysql"`
 }
