@@ -1,6 +1,7 @@
 package routes
 
 import (
+	"fmt"
 	"github.com/gin-gonic/gin"
 	"math/rand"
 	"net/http"
@@ -25,4 +26,5 @@ func Ping(c *gin.Context) {
 	msg.Data = map[string]int{"count": count}
 	msg.Data["lucky_number"] = rand.Intn(100 * 100)
 	c.JSON(http.StatusOK, msg)
+	fmt.Println("ping ")
 }

@@ -7,7 +7,9 @@ import (
 
 func InitRoute() *gin.Engine{
 	gin.SetMode(global.CONFIG.RUN_MODE)
-	engine := gin.Default()
+	engine := gin.New()
+	engine.Use(gin.Logger())
+	engine.Use(gin.Recovery())
 	loadRoute(engine)
 	return engine
 
