@@ -8,7 +8,7 @@ import (
 )
 
 func loadTestRoutes(engine *gin.Engine){
-	engine.GET("ping", Ping)
+	engine.GET("/ping", Ping)
 }
 
 var count int

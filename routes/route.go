@@ -12,7 +12,6 @@ func InitRoute() *gin.Engine{
 	engine.Use(gin.Recovery())
 	loadRoute(engine)
 	return engine
-
 }
 
 func loadRoute(engine *gin.Engine){

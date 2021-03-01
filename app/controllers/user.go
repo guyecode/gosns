@@ -31,6 +31,7 @@ func UserLogin(c *gin.Context) {
 	global.DB.First(&auser, "age=?", 20)
 
 	fmt.Println(auser)
+	c.SetCookie("token", "abcd", 3600, "/", "127.0.0.1", false, true)
 	c.JSON(http.StatusOK, gin.H{"msg": "登录成功", "user": auser})
 }
 
@@ -45,4 +46,11 @@ func UserRegister(c *gin.Context){
 	newUser.Password = user.Password
 	global.DB.Create(&newUser)
 	c.JSON(http.StatusOK, gin.H{"msg": "ok"})
+}
+
+func UserProfile(c *gin.Context){
+	id := c.Param("id")
+	var user = models.User{}
+	global.DB.First(&user, id)
+	c.JSON(http.StatusOK, gin.H{"user": user})
 }
