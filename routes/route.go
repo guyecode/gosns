@@ -17,4 +17,5 @@ func InitRoute() *gin.Engine{
 func loadRoute(engine *gin.Engine){
 	loadApiRoutes(engine)
 	loadTestRoutes(engine)
+	loadSwagRoute(engine)
 }

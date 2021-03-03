@@ -12,8 +12,35 @@ type UserForm struct {
 	Username string `form:"username" json:"username" binding:"required"`
 	Password string `form:"password" json:"password" binding:"required"`
 }
+type Model struct {
+	ID         int `gorm:"primary_key" json:"id"`
+	CreatedOn  int `json:"created_on"`
+	ModifiedOn int `json:"modified_on"`
+	DeletedAt  int `json:"deleted_at" gorm:"-"`
+}
 
+type User struct {
+	Model
+	Name       string `json:"name"`
+	CreatedBy  string `json:"created_by"`
+	ModifiedBy string `json:"modified_by"`
+}
 
+type UserSwagger struct {
+	Lists []*User
+	Total int
+}
+// @Summary 用户登录
+// @Description  获取用户列表
+// @Tags 用户信息
+// @Produce  json
+// @Failure 400 {object} utils.SKELETON "参数错误"
+// @Failure 20001 {object} utils.SKELETON "Token鉴权失败"
+// @Failure 20002 {object} utils.SKELETON "Token已超时"
+// @Failure 20004 {object} utils.SKELETON "Token错误"
+// @Failure 20005 {object} utils.SKELETON "Token参数不能为空"
+// @Success 0 {object} UserSwagger "查询成功"
+// @Router /api/login [get]
 func UserLogin(c *gin.Context) {
 	var user UserForm
 	if err := c.ShouldBind(&user); err != nil {
@@ -35,6 +62,20 @@ func UserLogin(c *gin.Context) {
 	c.JSON(http.StatusOK, gin.H{"msg": "登录成功", "user": auser})
 }
 
+// @Summary 用户注册
+// @Description  使用用户名密码注册成为新用户
+// @Description 用户名不能为空，密码不能为空
+// @Tags 用户信息
+// @Produce  json
+// @Param username query string false "用户名"
+// @Param password query string true "密码"
+// @Failure 400 {object} utils.SKELETON "参数错误"
+// @Failure 20001 {object} utils.SKELETON "Token鉴权失败"
+// @Failure 20002 {object} utils.SKELETON "Token已超时"
+// @Failure 20004 {object} utils.SKELETON "Token错误"
+// @Failure 20005 {object} utils.SKELETON "Token参数不能为空"
+// @Success 0 {object} UserSwagger "查询成功"
+// @Router /api/register [get]
 func UserRegister(c *gin.Context){
 	var user UserForm
 	if err:=c.ShouldBind(&user); err != nil{
