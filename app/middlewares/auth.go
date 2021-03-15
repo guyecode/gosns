@@ -3,6 +3,7 @@ package middlewares
 import (
 	"fmt"
 	"github.com/gin-gonic/gin"
+	"gosns/app/models"
 	"net/http"
 )
 
@@ -26,7 +27,7 @@ func Auth() gin.HandlerFunc {
 			c.AbortWithStatusJSON(http.StatusUnauthorized, gin.H{"code": 1, "msg": "Auth user login failed."})
 			return
 		}
-
+		c.Set("cur_user", models.User{})
 		c.Next()
 		processResponse(c)
 	}
