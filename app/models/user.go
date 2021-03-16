@@ -1,9 +1,20 @@
 package models
 
 import (
-	"golang.org/x/text/currency"
 	"time"
 )
+
+type Account struct {
+	Model
+	Username string	`json:"-"`
+	Password string `json:"-"`
+	Email string `json:"email"`
+	Mobile string `json:""`
+	UserID uint `json:"userid"`
+	WechatID string
+	WeiboID string
+	QQID string
+}
 
 type User struct {
 	Model
@@ -22,20 +33,6 @@ type User struct {
 	Status int `json:"status"`
 }
 
-
-
-type Account struct {
-	Model
-	Username string	`json:"-"`
-	Password string `json:"-"`
-	Email string `json:"email"`
-	Mobile string `json:""`
-	UserID unit `json:"userid"`
-	WechatID string
-	WeiboID string
-	QQID string
-}
-
 // 用户关系
 type Follower struct {
 	Model
@@ -43,4 +40,17 @@ type Follower struct {
 	To uint `gorm:"index"`
 	Status int
 	Group string
+}
+
+// 短信验证码
+type SMSCode struct {
+	Model
+	Mobile string `gorm:"index"`
+	Code string
+	Device string
+	IP string
+}
+
+func (sms *SMSCode) create() {
+
 }

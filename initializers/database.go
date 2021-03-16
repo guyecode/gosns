@@ -51,4 +51,7 @@ func InitDatabase() *gorm.DB {
 
 func AutoMigrate(db *gorm.DB) {
 	db.AutoMigrate(&(models.User{}))
+	db.AutoMigrate(&(models.Account{}))
+	db.AutoMigrate(&(models.Follower{}))
+	db.AutoMigrate(&(models.SMSCode{}))
 }

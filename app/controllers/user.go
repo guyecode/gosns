@@ -52,14 +52,18 @@ func UserLogin(c *gin.Context) {
 		return
 	}
 	var auser models.User
-	//result:=db.Create(&auser)
-	//fmt.Println(result)
+	// result:=db.Create(&auser)
+	// fmt.Println(result)
 
 	global.DB.First(&auser, "age=?", 20)
 
 	fmt.Println(auser)
 	c.SetCookie("token", "abcd", 3600, "/", "127.0.0.1", false, true)
 	c.JSON(http.StatusOK, gin.H{"msg": "登录成功", "user": auser})
+}
+
+func LoginWithMobile(c *gin.Context) {
+
 }
 
 // @Summary 用户注册
@@ -82,7 +86,7 @@ func UserRegister(c *gin.Context){
 		c.JSON(http.StatusOK, gin.H{"error": err.Error()})
 		return
 	}
-	var newUser = models.User{}
+	var newUser = models.Account{}
 	newUser.Username = user.Username
 	newUser.Password = user.Password
 	global.DB.Create(&newUser)
