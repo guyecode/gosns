@@ -19,3 +19,6 @@ RUN_MODE = "debug"
     # 数据库连接最大生存时间
     MaxLifetime = 30
 
+[redis]
+    Host = "127.0.0.1"
+    Port = 6379

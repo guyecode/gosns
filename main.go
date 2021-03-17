@@ -63,5 +63,7 @@ func main() {
 	global.DB = initializers.InitDatabase()
 	db, _ :=global.DB.DB()
 	defer db.Close()
+	r, _ := initializers.InitializeReids()
+	defer r.Close()
 	engine.Run(":8080")
 }

@@ -2,7 +2,9 @@ package routes
 
 import (
 	"fmt"
+	"github.com/garyburd/redigo/redis"
 	"github.com/gin-gonic/gin"
+	"gosns/global"
 	"math/rand"
 	"net/http"
 )
@@ -26,5 +28,6 @@ func Ping(c *gin.Context) {
 	msg.Data = map[string]int{"count": count}
 	msg.Data["lucky_number"] = rand.Intn(100 * 100)
 	c.JSON(http.StatusOK, msg)
+	fmt.Println(redis.String(global.REDIS.Do("GET", "name")))
 	fmt.Println("ping ")
 }
