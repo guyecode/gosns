@@ -115,28 +115,51 @@ var doc = `{
                             "$ref": "#/definitions/controllers.UserSwagger"
                         }
                     },
-                    "20001": {
-                        "description": "Token鉴权失败",
+                    "400": {
+                        "description": "参数错误",
                         "schema": {
                             "$ref": "#/definitions/utils.SKELETON"
                         }
+                    }
+                }
+            }
+        },
+        "/api/sms": {
+            "post": {
+                "description": "用户注册、找回密码时需要用到",
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "手机短信"
+                ],
+                "summary": "发送手机验证码",
+                "parameters": [
+                    {
+                        "type": "string",
+                        "description": "设备ID",
+                        "name": "deviceid",
+                        "in": "header"
                     },
-                    "20002": {
-                        "description": "Token已超时",
+                    {
+                        "type": "string",
+                        "description": "手机号",
+                        "name": "mobile",
+                        "in": "formData",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "0": {
+                        "description": "发送成功",
                         "schema": {
-                            "$ref": "#/definitions/utils.SKELETON"
+                            "$ref": "#/definitions/controllers.UserSwagger"
                         }
                     },
-                    "20004": {
-                        "description": "Token错误",
+                    "1": {
+                        "description": "发送达到上限",
                         "schema": {
-                            "$ref": "#/definitions/utils.SKELETON"
-                        }
-                    },
-                    "20005": {
-                        "description": "Token参数不能为空",
-                        "schema": {
-                            "$ref": "#/definitions/utils.SKELETON"
+                            "type": "string"
                         }
                     },
                     "400": {
@@ -270,7 +293,7 @@ type swaggerInfo struct {
 var SwaggerInfo = swaggerInfo{
 	Version:     "1.0",
 	Host:        "localhost:8080",
-	BasePath:    "/api/v1",
+	BasePath:    "/api",
 	Schemes:     []string{},
 	Title:       "Swagger Example API",
 	Description: "This is a sample server celler server.",

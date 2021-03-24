@@ -9,7 +9,7 @@ func loadOpenApiRoutes(engine *gin.Engine){
 	api := engine.Group("/api")
 	api.GET("/login", controllers.UserLogin)
 	api.GET("/register", controllers.UserRegister)
-	api.GET("/sms", controllers.SendCode)
+	api.POST("/sms", controllers.SendCode)
 
 }
 

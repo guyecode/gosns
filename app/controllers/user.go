@@ -86,10 +86,6 @@ func UserLogin(c *gin.Context) {
 // @Param username query string false "用户名"
 // @Param password query string true "密码"
 // @Failure 400 {object} utils.SKELETON "参数错误"
-// @Failure 20001 {object} utils.SKELETON "Token鉴权失败"
-// @Failure 20002 {object} utils.SKELETON "Token已超时"
-// @Failure 20004 {object} utils.SKELETON "Token错误"
-// @Failure 20005 {object} utils.SKELETON "Token参数不能为空"
 // @Success 0 {object} UserSwagger "查询成功"
 // @Router /api/register [get]
 func UserRegister(c *gin.Context) {

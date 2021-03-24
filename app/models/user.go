@@ -42,15 +42,3 @@ type Follower struct {
 	Group string
 }
 
-// 短信验证码
-type SMSCode struct {
-	Model
-	Mobile string `gorm:"index"`
-	Code string
-	Device string
-	IP string
-}
-
-func (sms *SMSCode) create() {
-
-}

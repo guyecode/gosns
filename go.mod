@@ -7,6 +7,7 @@ require (
 	github.com/garyburd/redigo v1.6.0
 	github.com/gin-gonic/gin v1.6.3
 	github.com/go-openapi/spec v0.20.3 // indirect
+	github.com/go-playground/validator/v10 v10.2.0
 	github.com/mailru/easyjson v0.7.7 // indirect
 	github.com/spf13/viper v1.7.1
 	github.com/swaggo/gin-swagger v1.2.0

@@ -1,4 +1,4 @@
-basePath: /api/v1
+basePath: /api
 definitions:
   controllers.User:
     properties:
@@ -108,25 +108,40 @@ paths:
           description: 参数错误
           schema:
             $ref: '#/definitions/utils.SKELETON'
-        "20001":
-          description: Token鉴权失败
-          schema:
-            $ref: '#/definitions/utils.SKELETON'
-        "20002":
-          description: Token已超时
-          schema:
-            $ref: '#/definitions/utils.SKELETON'
-        "20004":
-          description: Token错误
-          schema:
-            $ref: '#/definitions/utils.SKELETON'
-        "20005":
-          description: Token参数不能为空
-          schema:
-            $ref: '#/definitions/utils.SKELETON'
       summary: 用户注册
       tags:
       - 用户信息
+  /api/sms:
+    post:
+      description: 用户注册、找回密码时需要用到
+      parameters:
+      - description: 设备ID
+        in: header
+        name: deviceid
+        type: string
+      - description: 手机号
+        in: formData
+        name: mobile
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "0":
+          description: 发送成功
+          schema:
+            $ref: '#/definitions/controllers.UserSwagger'
+        "1":
+          description: 发送达到上限
+          schema:
+            type: string
+        "400":
+          description: 参数错误
+          schema:
+            $ref: '#/definitions/utils.SKELETON'
+      summary: 发送手机验证码
+      tags:
+      - 手机短信
 securityDefinitions:
   ApiKeyAuth:
     in: header

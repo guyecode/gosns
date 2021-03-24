@@ -55,15 +55,14 @@ var db *gorm.DB
 // @x-extension-openapi {"example": "value on a json format"}
 
 func main() {
+	initializers.InitValidator()
 	engine := initializers.InitEngine()
-
-
 	// 加载配置文件
 	initializers.InitConfig()
 	global.DB = initializers.InitDatabase()
 	db, _ :=global.DB.DB()
 	defer db.Close()
-	r, _ := initializers.InitializeReids()
+	r, _ := initializers.InitReids()
 	defer r.Close()
 	engine.Run(":8080")
 }

@@ -6,7 +6,7 @@ import (
 	"github.com/garyburd/redigo/redis"
 )
 
-func InitializeReids() (redis.Conn, error){
+func InitReids() (redis.Conn, error){
 	m := global.CONFIG.Redis
 	dsn := fmt.Sprintf("%s:%d", m.Host, m.Port)
 	c, err := redis.Dial("tcp", dsn)

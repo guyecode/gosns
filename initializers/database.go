@@ -5,9 +5,13 @@ import (
 	"github.com/gin-gonic/gin"
 	"gorm.io/driver/mysql"
 	"gorm.io/gorm"
+	"gorm.io/gorm/logger"
 	"gorm.io/gorm/schema"
 	"gosns/global"
 	"gosns/app/models"
+	"log"
+	"os"
+	"time"
 )
 
 func InitDatabase() *gorm.DB {
@@ -25,7 +29,7 @@ func InitDatabase() *gorm.DB {
 	}
 	db, err := gorm.Open(mysql.New(mysqlConfig), &gorm.Config{
 		DisableForeignKeyConstraintWhenMigrating: true,
-		//Logger:                                   getGromLogger(),
+		Logger:  getGromLogger(global.CONFIG.RUN_MODE),
 		NamingStrategy: schema.NamingStrategy{
 			TablePrefix:   mc.Prefix, // 表前缀
 			SingularTable: false,      // 使用单数表名
@@ -46,6 +50,23 @@ func InitDatabase() *gorm.DB {
 	}
 	return db
 
+}
+
+func getGromLogger(mode string) logger.Interface {
+	level := logger.Silent
+	if mode == "debug" {
+		level = logger.Info
+	}
+	newLogger := logger.New(
+		log.New(os.Stdout, "\r\n", log.LstdFlags), // io writer
+		logger.Config{
+			SlowThreshold: time.Second,   // Slow SQL threshold
+			LogLevel:      level, // Log level
+			Colorful:      false,         // Disable color
+		},
+	)
+
+	return newLogger
 }
 
 
