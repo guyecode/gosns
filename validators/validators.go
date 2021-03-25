@@ -5,6 +5,7 @@ import (
 	"regexp"
 )
 
+// 验证国内手机号
 var MobileNumber validator.Func = func(fl validator.FieldLevel) bool {
 	number, ok := fl.Field().Interface().(string)
 	if ok {

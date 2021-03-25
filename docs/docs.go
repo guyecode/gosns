@@ -53,31 +53,31 @@ var doc = `{
                     "20001": {
                         "description": "Token鉴权失败",
                         "schema": {
-                            "$ref": "#/definitions/utils.SKELETON"
+                            "$ref": "#/definitions/utils.JSON_STRUCT"
                         }
                     },
                     "20002": {
                         "description": "Token已超时",
                         "schema": {
-                            "$ref": "#/definitions/utils.SKELETON"
+                            "$ref": "#/definitions/utils.JSON_STRUCT"
                         }
                     },
                     "20004": {
                         "description": "Token错误",
                         "schema": {
-                            "$ref": "#/definitions/utils.SKELETON"
+                            "$ref": "#/definitions/utils.JSON_STRUCT"
                         }
                     },
                     "20005": {
                         "description": "Token参数不能为空",
                         "schema": {
-                            "$ref": "#/definitions/utils.SKELETON"
+                            "$ref": "#/definitions/utils.JSON_STRUCT"
                         }
                     },
                     "400": {
                         "description": "参数错误",
                         "schema": {
-                            "$ref": "#/definitions/utils.SKELETON"
+                            "$ref": "#/definitions/utils.JSON_STRUCT"
                         }
                     }
                 }
@@ -118,7 +118,7 @@ var doc = `{
                     "400": {
                         "description": "参数错误",
                         "schema": {
-                            "$ref": "#/definitions/utils.SKELETON"
+                            "$ref": "#/definitions/utils.JSON_STRUCT"
                         }
                     }
                 }
@@ -153,7 +153,7 @@ var doc = `{
                     "0": {
                         "description": "发送成功",
                         "schema": {
-                            "$ref": "#/definitions/controllers.UserSwagger"
+                            "$ref": "#/definitions/utils.JSON_STRUCT"
                         }
                     },
                     "1": {
@@ -165,7 +165,7 @@ var doc = `{
                     "400": {
                         "description": "参数错误",
                         "schema": {
-                            "$ref": "#/definitions/utils.SKELETON"
+                            "$ref": "#/definitions/utils.JSON_STRUCT"
                         }
                     }
                 }
@@ -213,7 +213,7 @@ var doc = `{
                 }
             }
         },
-        "utils.SKELETON": {
+        "utils.JSON_STRUCT": {
             "type": "object",
             "properties": {
                 "code": {

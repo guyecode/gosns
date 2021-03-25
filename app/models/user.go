@@ -1,6 +1,10 @@
 package models
 
 import (
+	"errors"
+	"fmt"
+	"gorm.io/gorm"
+	"gosns/global"
 	"time"
 )
 
@@ -9,7 +13,7 @@ type Account struct {
 	Username string	`json:"-"`
 	Password string `json:"-"`
 	Email string `json:"email"`
-	Mobile string `json:""`
+	Mobile string `json:"mobile" gorm:"unique"`
 	UserID uint `json:"userid"`
 	WechatID string
 	WeiboID string
@@ -23,7 +27,7 @@ type User struct {
 	Gender uint `json:"gender"`
 	Avatar string `json:"avatar"`
 	Region string `json:"region"`
-	Birth time.Time
+	Birth time.Time `json:"birth"`
 	Intro string `json:"intro"`
 	FansNum int `json:"fans_num"`
 	FollowNum int `json:"follow_num"`
@@ -42,3 +46,9 @@ type Follower struct {
 	Group string
 }
 
+func GetAccountByMobile(mobile string) (account *Account){
+	result := global.DB.Where("mobile=?", mobile).First(&account)
+	fmt.Println(result.RowsAffected)
+	errors.Is(result.Error, gorm.ErrRecordNotFound)
+	return account
+}

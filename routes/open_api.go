@@ -10,6 +10,7 @@ func loadOpenApiRoutes(engine *gin.Engine){
 	api.GET("/login", controllers.UserLogin)
 	api.GET("/register", controllers.UserRegister)
 	api.POST("/sms", controllers.SendCode)
+	api.POST("/login/mobile", controllers.LoginWithMobile)
 
 }
 
